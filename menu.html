@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0c0705">
+  <meta name="description" content="Menú de día y menú de noche de Arepas Monik.">
+  <title>Menú · Arepas Monik</title>
+  <link rel="icon" href="logo-monik.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Poppins:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="menu.css">
+</head>
+<body data-menu="dia">
+
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <!-- ===== Cabecera ===== -->
+  <header class="hero">
+    <img class="hero-logo" src="logo-monik.png" alt="Arepas Monik" width="520" height="449">
+    <p class="hero-kicker"><span></span>Bienvenidos<span></span></p>
+  </header>
+
+  <!-- ===== Buscador ===== -->
+  <div class="searchbar">
+    <label class="search" for="q">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Buscar: pollo, café, huevos…" autocomplete="off" enterkeyhint="search" aria-label="Buscar en el menú">
+      <button class="search-clear" id="qClear" type="button" aria-label="Borrar búsqueda" hidden>✕</button>
+    </label>
+  </div>
+
+  <!-- ===== Pestañas + categorías (se quedan fijas al hacer scroll) ===== -->
+  <div class="sticky" id="sticky">
+    <div class="tabs" id="tabs" role="tablist" aria-label="Elegir menú" data-active="0">
+      <span class="tabs-pill" aria-hidden="true"></span>
+      <button class="tab" id="tab-dia" role="tab" type="button" data-menu="dia" aria-selected="true" aria-controls="panel">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.3M12 19.2v2.3M2.5 12h2.3M19.2 12h2.3M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg>
+        Menú día
+      </button>
+      <button class="tab" id="tab-noche" role="tab" type="button" data-menu="noche" aria-selected="false" aria-controls="panel" tabindex="-1">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"/></svg>
+        Menú noche
+      </button>
+    </div>
+    <nav class="chips" id="chips" aria-label="Categorías del menú"></nav>
+  </div>
+
+  <!-- ===== Contenido ===== -->
+  <main class="wrap">
+    <div class="menu-head">
+      <h2 class="script-title" id="menuTitle">Menú día</h2>
+      <div class="swoosh" aria-hidden="true"></div>
+      <p class="menu-note" id="menuNote" aria-live="polite"></p>
+    </div>
+
+    <div class="cross-hint" id="crossHint" hidden></div>
+
+    <section id="panel" class="cols" role="tabpanel" aria-live="polite" tabindex="-1"></section>
+
+    <div class="empty" id="empty" hidden>
+      <div class="empty-icon" aria-hidden="true">🫓</div>
+      <p class="empty-title">No encontramos “<span id="emptyQ"></span>”</p>
+      <p class="empty-sub">Prueba con otra palabra, por ejemplo <em>pollo</em>, <em>queso</em> o <em>café</em>.</p>
+      <button class="btn" id="emptyClear" type="button">Ver todo el menú</button>
+    </div>
+
+    <noscript><p class="empty-sub" style="text-align:center;padding:40px 0">Activa JavaScript para ver el menú.</p></noscript>
+
+    <!-- ===== Botón final: Haz tu pedido (en el menú día y en el menú noche) ===== -->
+    <div class="order-cta">
+      <button type="button" class="btn btn--wa btn--lg" id="orderCta">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.6A8.5 8.5 0 0 1 8 19.2L3.5 20.5l1.4-4.4A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M9.2 8.6c.3 2.6 2.7 5 5.3 5.4l1.2-1.3-1.9-1-.8.7a4.6 4.6 0 0 1-1.9-1.9l.7-.8-1-1.9Z"/></svg>
+        <span>Haz tu pedido<span id="ctaCount"></span></span>
+      </button>
+      <p class="order-cta-note">Toca el <b>+</b> en los productos que quieras y envía tu pedido por WhatsApp.</p>
+    </div>
+  </main>
+
+  <footer class="foot">
+    <img src="logo-monik.png" alt="" width="120" height="104">
+    <p>Arepas Monik</p>
+  </footer>
+
+  <button class="to-top" id="toTop" type="button" aria-label="Volver arriba" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>
+  </button>
+
+  <!-- ===== Barra flotante del pedido ===== -->
+  <button class="order-bar" id="orderBar" type="button" hidden>
+    <span class="ob-count" id="barCount">0</span>
+    <span class="ob-text">Ver mi pedido</span>
+    <span class="ob-total" id="barTotal">$0</span>
+  </button>
+
+  <!-- ===== Ventana del pedido ===== -->
+  <dialog class="sheet" id="orderDialog" aria-labelledby="orderTitle">
+    <header class="sheet-head">
+      <h2 id="orderTitle">Mi pedido</h2>
+      <button type="button" class="sheet-x" id="orderClose" aria-label="Cerrar pedido">✕</button>
+    </header>
+
+    <div class="sheet-body">
+      <div class="order-empty" id="orderEmpty" hidden>
+        <div class="empty-icon" aria-hidden="true">🛒</div>
+        <p class="empty-title">Tu pedido está vacío</p>
+        <p class="empty-sub">Toca el <b>+</b> en los productos que quieras y vuelve aquí para enviarlo.</p>
+        <button class="btn" type="button" id="orderBack">Ver el menú</button>
+      </div>
+
+      <div id="orderList" hidden></div>
+
+      <form id="orderForm" novalidate hidden>
+        <label class="field">
+          <span>Tu nombre</span>
+          <input id="fNombre" type="text" autocomplete="name" maxlength="60" placeholder="Ej: Juan Pérez" required>
+        </label>
+
+        <fieldset class="field seg">
+          <legend>¿Cómo lo recibes?</legend>
+          <label><input type="radio" name="entrega" value="Domicilio" checked><span>Domicilio</span></label>
+          <label><input type="radio" name="entrega" value="Recoger en el local"><span>Local</span></label>
+        </fieldset>
+
+        <label class="field" id="fDirWrap">
+          <span>Dirección</span>
+          <input id="fDir" type="text" autocomplete="street-address" maxlength="120" placeholder="Calle, número, barrio">
+        </label>
+
+        <label class="field">
+          <span>Mesa <em>(esto solo si estas en el punto físico ej: mesa 6)</em></span>
+          <textarea id="fNota" rows="2" maxlength="200" placeholder="Ej: sin cebolla, maduros con queso criollo"></textarea>
+        </label>
+
+        <p class="form-error" id="formError" role="alert" hidden></p>
+        <p class="form-ok" id="formOk" role="status" hidden>Se abrió WhatsApp con tu pedido. Solo falta que le des enviar.</p>
+
+        <button type="submit" class="btn btn--wa btn--block">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.6A8.5 8.5 0 0 1 8 19.2L3.5 20.5l1.4-4.4A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M9.2 8.6c.3 2.6 2.7 5 5.3 5.4l1.2-1.3-1.9-1-.8.7a4.6 4.6 0 0 1-1.9-1.9l.7-.8-1-1.9Z"/></svg>
+          Enviar pedido por WhatsApp
+        </button>
+        <button type="button" class="link link--muted" id="clearOrder">Vaciar pedido</button>
+      </form>
+    </div>
+  </dialog>
+
+  <script src="menu.js"></script>
+</body>
+</html>
