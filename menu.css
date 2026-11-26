@@ -597,7 +597,9 @@ body.modal-open { overflow: hidden; }
 /* Ventana del pedido (abajo en celular, centrada en pantallas grandes) */
 .sheet {
   width: min(560px, 100%);
-  max-height: min(92vh, 92dvh);
+  height: auto;
+  max-height: 92vh;
+  max-height: 92dvh;
   margin: auto;
   padding: 0;
   color: var(--text);
@@ -612,7 +614,7 @@ body.modal-open { overflow: hidden; }
 @keyframes sheet-in { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: none; } }
 
 .sheet-head {
-  flex: none;
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -622,7 +624,7 @@ body.modal-open { overflow: hidden; }
 .sheet-head h2 { font-family: var(--font-script); font-weight: 400; font-size: 1.9rem; line-height: 1.2; color: var(--cream); }
 .sheet-x { width: 36px; height: 36px; border-radius: 50%; color: var(--cream); background: rgba(255, 244, 210, 0.1); }
 .sheet-x:hover { background: rgba(255, 244, 210, 0.2); }
-.sheet-body { flex: 1; overflow-y: auto; overscroll-behavior: contain; padding: 8px 22px 22px; }
+.sheet-body { flex: 1 1 auto; min-height: 0; -webkit-overflow-scrolling: touch; overflow-y: auto; overscroll-behavior: contain; padding: 8px 22px 22px; }
 
 .order-empty { text-align: center; padding: 22px 0 8px; }
 
