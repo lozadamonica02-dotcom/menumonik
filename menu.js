@@ -69,8 +69,10 @@ const MENU = {
           { n: "Huevos cacerola y salchichas", p: 10000 },
           { n: "Huevos pericos", p: 5000 },
           { n: "Arepa con sal", p: 1000, sep: true },
-          { n: "Arepa aliñada", p: 1200 },
-          { n: "Arepa simple", v: [{ l: "Grande", p: 1000 }, { l: "Pequeña", p: 1200 }] }
+          { n: "Arepa aliñada", p: 1300 },
+          { n: "Arepa simple", v: [{ l: "Pequeña", p: 400 }, { l: "Grande", p: 1000 }] },
+          { n: "Paquete de arepas con sal", p: 4500 },
+          { n: "Paquete de arepas aliñadas", p: 6000 }
         ]
       },
       {
