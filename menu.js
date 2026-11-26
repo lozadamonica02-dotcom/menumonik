@@ -101,7 +101,7 @@ const MENU = {
           { n: "Salchicha", p: 2500 },
           { n: "Jamón", p: 1500 },
           { n: "Chorizo", p: 8000 },
-          { n: "Chicharrón", p: 9000 }
+          { n: "Chicharrón", p: 4000 }
         ]
       }
     ]
