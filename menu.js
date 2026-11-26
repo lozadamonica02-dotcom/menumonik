@@ -40,7 +40,7 @@ const MENU = {
           { n: "Rancheros", d: "+ arroz + arepa + café", p: 11000 },
           { n: "Patacones + huevos", p: 10000 },
           { n: "Patacones + carne encebollada", p: 11000 },
-          { n: "Patacones + arroz", p: 13000 },
+          { n: "Patacones + arroz + carne", p: 13000 },
           { n: "Patacones + carne o hígado", p: 11000 },
           {
             n: "Omelette",
@@ -55,7 +55,7 @@ const MENU = {
         items: [
           { n: "Pollo", p: 9000 },
           { n: "Carne", p: 9000 },
-          { n: "Con todo", d: "Pollo, carne, chicharrón, huevos", p: 13000 },
+          { n: "Con todo", d: "Pollo, carne, chicharrón, huevos", p: 12000 },
           { n: "Perico", p: 3500 },
           { n: "Queso", p: 3000 },
           { n: "Jamón, queso", p: 4500 },
